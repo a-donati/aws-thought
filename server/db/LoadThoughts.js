@@ -17,6 +17,7 @@ allUsers.forEach(user => {
         "thought": user.thought
       }
     };
+    // inserting data into db
     dynamodb.put(params, (err, data) => {
         if (err) {
           console.error("Unable to add thought", user.username, ". Error JSON:", JSON.stringify(err, null, 2));
