@@ -10,6 +10,22 @@ const Profile = props => {
     createdAt: '', 
     thought: '',
   }]);
+// fecth data from db
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // userParam sourced from React Router to retain username from ThoughtList component
+        const res = await fetch(`/api/users/${userParam}`);
+        const data = await res.json();
+        console.log(data);
+        setThoughts([...data]);
+        setIsLoaded(true);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, [userParam]);
 
   return (
     <div>
