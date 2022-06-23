@@ -37,12 +37,13 @@ router.get('/users/:username', (req, res) => {
           '#un': 'username',
           '#ca': 'createdAt',
           '#th': 'thought',
+          "#img": "image"
         },
         ExpressionAttributeValues: {
           ':user': req.params.username,
         },
         // define which attributes or columns will be returned
-        ProjectionExpression: '#th, #ca',
+        ProjectionExpression: '#un, #th, #ca, #img',
         // default setting is true - asc. false - desc
         ScanIndexForward: false,
       };
@@ -66,6 +67,7 @@ router.post('/users', (req, res) => {
         username: req.body.username,
         createdAt: Date.now(),
         thought: req.body.thought,
+        image: req.body.image
       },
     };
     // database call
